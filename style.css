@@ -1,0 +1,26 @@
+body {
+  background-color: #f8f8f8;
+}
+
+.search-area {
+  background-color: #5591DF;
+  margin: 0;
+  padding: 12px;
+  color: #f8f8f8;
+}
+.search-area h1 {
+  margin-top: 0;
+}
+.search-area h1 small {
+  color: #f8f8f8;
+}
+
+.navbar-inverse {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: -1px;
+}
+
+.controls {
+  margin-left: 5px;
+}
