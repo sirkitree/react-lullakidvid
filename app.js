@@ -154,7 +154,7 @@ var VideoApp = React.createClass({
       
         <div className="input-group">
           <form onSubmit={ this.handleSubmit }>
-            <input className="form-control" onChange={ this.onChange } value={ this.state.url } placeholder="Enter a youtube url."/>
+            <input className="form-control" size="50" onChange={ this.onChange } value={ this.state.url } placeholder="Enter a youtube url."/>
             <span className="input-group-btn">
               <button className="btn btn-default" type="button" onClick={ this.handleSubmit }>Add</button>
             </span>
