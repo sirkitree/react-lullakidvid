@@ -152,8 +152,6 @@ var VideoApp = React.createClass({
     // console.log(this);
     return (
       <div className="col-lg-12">
-
-        <VideoList items={ this.state.items } />
       
         <div className="input-group">
           <form onSubmit={ this.handleSubmit }>
@@ -163,6 +161,8 @@ var VideoApp = React.createClass({
             </span>
           </form>
         </div>
+
+        <VideoList items={ this.state.items } />
       
       </div>
     )
