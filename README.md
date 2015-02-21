@@ -1,5 +1,4 @@
-# react-lullakidvid
-Experimenting with reactfire
+# LullaKid Vid
 
 This is a project started by @sirkitree to help learn reactjs.
 
