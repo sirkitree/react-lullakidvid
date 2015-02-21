@@ -21,8 +21,12 @@ body {
   margin-top: -1px;
 }
 
-.videoUrl {
-  padding: 3px;
+.list-group-item {
+  width: 352px;
+  float: left;
+  margin-right: 20px;
+  margin-top: 20px;
+  border-radius: 4px;
 }
 .controls {
   margin-left: 5px;

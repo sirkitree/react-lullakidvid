@@ -91,8 +91,7 @@ var VideoListItem = React.createClass({
       <li className="list-group-item" key={ this.props.index }>
         <VideoControls index={ this.props.index } />
         <VideoRating rank={ this.props.item.rank } />
-        <VideoThumb url={ this.props.item.url } />
-        <span className="videoUrl">{ this.props.item.url }</span>
+        <VideoThumb url={ this.props.item.url } size="mq" />
       </li>
     )
   }
