@@ -47,6 +47,43 @@ var VideoRating = React.createClass({
   }
 });
 
+/**
+ * Given a youtube url, return an image tag for the url.
+ *
+ * @params
+ *   - url: url of the youtube video (required)
+ *   - size: indicate the size of the image (optional)
+ *      - default (default version, 120px x 90px)
+ *      - mq (medium quality version, 320px × 180px)
+ *      - hq (high quality version, 480px × 360px)
+ *      - sd (standard definition version, 640px × 480px)
+ *      - maxres (maximum resolution version, 1280px × 720px)
+ */
+var VideoThumb = React.createClass({
+  parseId: function(url) {
+    // https://www.youtube.com/watch?v=j47dBhsHusg
+    var regexS = "[\\?&]v=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(url);
+    return (results == null) ? '' : results[1];
+  },
+
+  sizer: function(size) {
+    var allowed = ['default', 'mq', 'hq', 'sd', 'maxres'];
+    if (allowed.indexOf(size) == -1 || size == 'default') {
+      size = '';
+    }
+    return size + 'default.jpg';
+  },
+
+  render: function() {
+    var size = this.sizer(this.props.size);
+    var youtubeId = this.parseId(this.props.url);
+    var imageUrl = 'http://i.ytimg.com/vi/' + youtubeId + '/' + size;
+    return <img src={ imageUrl } />
+  }
+});
+
 var VideoListItem = React.createClass({
   render: function() {
     // console.log(this.props, 'videolistitem');
@@ -54,7 +91,8 @@ var VideoListItem = React.createClass({
       <li className="list-group-item" key={ this.props.index }>
         <VideoControls index={ this.props.index } />
         <VideoRating rank={ this.props.item.rank } />
-        { this.props.item.url }
+        <VideoThumb url={ this.props.item.url } />
+        <span className="videoUrl">{ this.props.item.url }</span>
       </li>
     )
   }
