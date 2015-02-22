@@ -111,6 +111,10 @@ var VideoList = React.createClass({
 var VideoSubmit = React.createClass({
   mixins: [ReactFireMixin],
 
+  getInitialState: function() {
+    return {items: []};
+  },
+
   onChange: function(e) {
     this.setState({url: e.target.value});
   },
@@ -129,7 +133,7 @@ var VideoSubmit = React.createClass({
 
   render: function() {
     return (      
-      <div className="input-group">
+      <div className="input-group navbar-form navbar-left">
         <form onSubmit={ this.handleSubmit }>
           <input className="form-control" size="50" onChange={ this.onChange } value={ this.state.url } placeholder="Enter a youtube url."/>
           <span className="input-group-btn">
@@ -141,9 +145,25 @@ var VideoSubmit = React.createClass({
   }
 });
 
+var VideoNav = React.createClass({
+  render: function() {
+    return (
+      <div className="navbar navbar-inverse">
+        <div id="navbar">
+          <VideoSubmit />
+          <ul className="nav navbar-nav pull-right">
+            <li><a href="https://github.com/sirkitree/react-lullakidvid/blob/master/README.md">About</a></li>
+            <li><a href="https://github.com/sirkitree/react-lullakidvid/issues/new">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    )
+  }
+});
+
 var VideoApp = React.createClass({
   mixins: [ReactFireMixin],
-  
+
   getInitialState: function() {
     return {items: []};
   },
@@ -168,8 +188,15 @@ var VideoApp = React.createClass({
   render: function() {
     // console.log(this);
     return (
-      <div className="col-lg-12">
-        <VideoList items={ this.state.items } />
+      <div class="container">
+        <VideoNav />
+        <div class="row">
+          <div class="videoAppContainer">
+            <div className="col-lg-12">
+              <VideoList items={ this.state.items } />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
