@@ -103,7 +103,8 @@ var VideoList = React.createClass({
     for (var i in this.props.items) {
       rows.push(<VideoListItem index={ i } item={ this.props.items[i] } />);
     }
-    return <ul className="list-group">{ rows }</ul>
+    // @todo: if authenticated sort by latest
+    return <ul className="list-group">{ rows.reverse() }</ul>
   }
 });
 
