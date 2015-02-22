@@ -108,9 +108,42 @@ var VideoList = React.createClass({
   }
 });
 
-var VideoApp = React.createClass({
+var VideoSubmit = React.createClass({
   mixins: [ReactFireMixin],
 
+  onChange: function(e) {
+    this.setState({url: e.target.value});
+  },
+
+  handleSubmit: function(e) {
+    e.preventDefault();
+    if (this.state.url && this.state.url.trim().length !== 0) {
+      this.firebaseRefs["items"].push({
+        url: this.state.url
+      });
+      this.setState({
+        url: ""
+      });
+    }
+  },
+
+  render: function() {
+    return (      
+      <div className="input-group">
+        <form onSubmit={ this.handleSubmit }>
+          <input className="form-control" size="50" onChange={ this.onChange } value={ this.state.url } placeholder="Enter a youtube url."/>
+          <span className="input-group-btn">
+            <button className="btn btn-default" type="button" onClick={ this.handleSubmit }>Add</button>
+          </span>
+        </form>
+      </div>
+    )
+  }
+});
+
+var VideoApp = React.createClass({
+  mixins: [ReactFireMixin],
+  
   getInitialState: function() {
     return {items: []};
   },
@@ -132,38 +165,11 @@ var VideoApp = React.createClass({
     // });
   },
 
-  onChange: function(e) {
-    this.setState({url: e.target.value});
-  },
-
-  handleSubmit: function(e) {
-    e.preventDefault();
-    if (this.state.url && this.state.url.trim().length !== 0) {
-      this.firebaseRefs["items"].push({
-        url: this.state.url
-      });
-      this.setState({
-        url: ""
-      });
-    }
-  },
-
   render: function() {
     // console.log(this);
     return (
       <div className="col-lg-12">
-      
-        <div className="input-group">
-          <form onSubmit={ this.handleSubmit }>
-            <input className="form-control" size="50" onChange={ this.onChange } value={ this.state.url } placeholder="Enter a youtube url."/>
-            <span className="input-group-btn">
-              <button className="btn btn-default" type="button" onClick={ this.handleSubmit }>Add</button>
-            </span>
-          </form>
-        </div>
-
         <VideoList items={ this.state.items } />
-      
       </div>
     )
   }
