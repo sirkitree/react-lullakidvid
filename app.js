@@ -115,6 +115,11 @@ var VideoSubmit = React.createClass({
     return {items: []};
   },
 
+  componentWillMount: function() {
+    var firebaseRef = new Firebase(baseurl + "/videos/");
+    this.bindAsObject(firebaseRef.limitToLast(25), "items");
+  },
+
   onChange: function(e) {
     this.setState({url: e.target.value});
   },
